@@ -130,12 +130,14 @@ class HBNBCommand(cmd.Cmd):
                     new_inst[params[0]] = params[1]
                 for key, value in new_inst.items():
                     if value[0] is "\"":
-                        value = vale[1:-1]
+                        value = value[1:-1]
                         value = value.replace('_', ' ')
                     elif "." in value:
                         value = float(value)
                     else:
                         value = int(value)
+                    setattr(object, key, value)
+
             object.save()
             print("{}".format(object.id))
         except SyntaxError:
