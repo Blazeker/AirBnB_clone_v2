@@ -31,7 +31,6 @@ class FileStorage:
             if obj_key in self.__objects.keys():
                 del self.__objects[obj_key]
 
-
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
