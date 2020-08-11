@@ -28,12 +28,12 @@ class FileStorage:
                         new_dict[key] = self.__objects[key]
         return new_dict
 
-    def delete(self, objects=None):
+    def delete(self, object=None):
         """delete object """
-        if objects is None:
+        if object is None:
             return
         else:
-            obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
+            obj_key = "{}.{}".format(object.__class__.__name__, object.id)
             if obj_key in self.__objects.keys():
                 del self.__objects[obj_key]
 
