@@ -27,7 +27,6 @@ class DBStorage:
 
     __engine = None
     __session = None
-    __all_classes = {State, City, Amenity, Place, Review, User}
 
     def __init__(self):
         """ init of DBstorage """
@@ -74,7 +73,7 @@ def new(self, obj):
 
 def save(self):
     """ commit all changes of the current db session """
-DBStorage.__session.commit()
+    DBStorage.__session.commit()
 
 
 def delete(self, obj=None):
