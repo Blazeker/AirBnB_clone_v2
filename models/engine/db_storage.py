@@ -64,22 +64,26 @@ def all(self, cls=None):
                 dic[key] = row
         return dic
 
-    def new(self, obj):
-        """ add the object to the current database session """
-        DBStorage.__session.add(obj)
 
-    def save(self):
-        """ commit all changes of the current db session """
-        DBStorage.__session.commit()
+def new(self, obj):
+    """ add the object to the current database session """
+    DBStorage.__session.add(obj)
 
-    def delete(self, obj=None):
-        """ delete from the current db session obj if not None """
-        DBStorage.__session.delete(obj)
 
-    def reload(self):
-        """ create all tables in the database """
-        Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(
-            bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        DBStorage.__session = Session()
+def save(self):
+    """ commit all changes of the current db session """
+DBStorage.__session.commit()
+
+
+def delete(self, obj=None):
+    """ delete from the current db session obj if not None """
+    DBStorage.__session.delete(obj)
+
+
+def reload(self):
+    """ Create all tables in the database (feature of SQLAlchemy)  """
+    Base.metadata.create_all(self.__engine)
+    session_factory = sessionmaker(
+        bind=self.__engine, expire_on_commit=False)
+    Session = scoped_session(session_factory)
+    DBStorage.__session = Session()
